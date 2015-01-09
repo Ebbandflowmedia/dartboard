@@ -49,7 +49,7 @@ gem "paperclip", "~> 4.1"
 gem 'aws-sdk'
 
 #Rails Admin
-gem 'rails_admin'
+gem 'rails_admin', github: 'sferik/rails_admin'
 
 #Roles
 gem 'cancan'

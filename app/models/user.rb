@@ -28,5 +28,9 @@ class User < ActiveRecord::Base
       return !!self.roles.find_by_name(role)
  end
 
+ def fullName
+    fname + ' ' + lname
+ end
+
 
 end

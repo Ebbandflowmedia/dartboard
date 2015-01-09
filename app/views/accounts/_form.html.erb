@@ -2,6 +2,8 @@
   <%= f.error_notification %>
 
   <div class="form-inputs">
+  	<%= f.association :user, label_method: :fullName%>
+  	<%= f.input :balance %>
   </div>
 
   <div class="form-actions">
