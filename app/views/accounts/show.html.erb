@@ -3,30 +3,29 @@
  <h1><%= @account.owner %></h1>
 
 
-<h2>Ballance: $<%= @account.balance %></h2>
+<h2>Ballance: <%= number_to_currency(@account.balance, :unit => "$", :precision => 2) %></h2>
 
+<h3>Transactions</h3>
 <table>
   <thead>
     <tr>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
+      <th>Date</th>
+      <th>Amount</th>
+      <th>Description</th>
+   
      
     </tr>
   </thead>
 
   <tbody>
-    <% Transaction.where(account_id: @account.id ).each do |transaction| %>
+    <% @account.transactions.each do |transaction| %>
       <tr>
+      	<td><%= transaction.created_at %></td>
+      	 <td><%= number_to_currency(transaction.amount, :unit => "$", :precision => 2) %></td>
         <td><%= transaction.name %></td>
-        <td><%= transaction.amount %></td>
-        <td><%= transaction.account.owner %> (#<%= transaction.account.id %>)</td>
-        <td><%= link_to 'Show', transaction %></td>
-        <td><%= link_to 'Edit', edit_transaction_path(transaction) %></td>
-        <td><%= link_to 'Destroy', transaction, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+       
+        
+        
       </tr>
     <% end %>
   </tbody>

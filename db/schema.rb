@@ -11,10 +11,9 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150109022736) do
+ActiveRecord::Schema.define(version: 20150109184718) do
 
   create_table "accounts", force: true do |t|
-    t.integer  "balance"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "user_id"

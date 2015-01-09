@@ -17,7 +17,7 @@
     <% @transactions.each do |transaction| %>
       <tr>
         <td><%= transaction.name %></td>
-        <td><%= transaction.amount %></td>
+        <td><%= number_to_currency(transaction.amount, :unit => "$", :precision => 2) %></td>
         <td><%= transaction.account.owner %> (#<%= transaction.account.id %>)</td>
         <td><%= link_to 'Show', transaction %></td>
         <td><%= link_to 'Edit', edit_transaction_path(transaction) %></td>
