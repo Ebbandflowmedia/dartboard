@@ -2,7 +2,7 @@ class CreateTransactions < ActiveRecord::Migration
   def self.up
     create_table :transactions do |t|
       t.string :name
-      t.belongs_to :account, index:true
+      t.belongs_to :account
       t.integer :amount
       t.timestamps
     end

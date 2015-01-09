@@ -6,6 +6,10 @@
       <th></th>
       <th></th>
       <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+     
     </tr>
   </thead>
 
@@ -14,7 +18,7 @@
       <tr>
         <td><%= transaction.name %></td>
         <td><%= transaction.amount %></td>
-        <td><%= transaction.account %></td>
+        <td><%= transaction.account.owner %> (#<%= transaction.account.id %>)</td>
         <td><%= link_to 'Show', transaction %></td>
         <td><%= link_to 'Edit', edit_transaction_path(transaction) %></td>
         <td><%= link_to 'Destroy', transaction, method: :delete, data: { confirm: 'Are you sure?' } %></td>

@@ -39,8 +39,6 @@ ActiveRecord::Schema.define(version: 20150109022736) do
     t.datetime "updated_at"
   end
 
-  add_index "transactions", ["account_id"], name: "index_transactions_on_account_id"
-
   create_table "users", force: true do |t|
     t.string   "email",                  default: "", null: false
     t.string   "encrypted_password",     default: "", null: false
