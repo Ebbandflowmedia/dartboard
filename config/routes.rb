@@ -2,15 +2,15 @@ FahrAway::Application.routes.draw do
 
 
 
+  resources :accounts
+
   resources :roles
 
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   devise_for :users
 
-  resources :events
-
-  root :to => 'events#index'
-  get "events/index"
+  root :to => 'accounts#index'
+  get "accounts/index"
 
 
 devise_scope :user do
