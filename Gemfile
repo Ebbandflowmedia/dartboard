@@ -16,6 +16,8 @@ end
 # Use PG as the database for Production
 group :production do
   gem 'pg'
+  gem 'rails_serve_static_assets' 
+  gem 'rails_stdout_logging'
 end
 
 # Use SCSS for stylesheets
