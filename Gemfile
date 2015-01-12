@@ -1,7 +1,12 @@
 source 'https://rubygems.org'
 
+
+ ruby '2.0.0'
+
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.0'
+
+
 
 # Use sqlite3 as the database for Active Record
 group :development, :test do
@@ -60,6 +65,10 @@ gem 'rails_admin', github: 'sferik/rails_admin'
 
 #Roles
 gem 'cancan'
+
+
+#heroku integration
+gem 'rails_12factor'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.1.2'
