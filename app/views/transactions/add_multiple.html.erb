@@ -1,0 +1,22 @@
+<h1>Add Transactions for</h1>
+
+<%= form_tag update_multiple_transactions_path, data: { :abide => "" }, method: :put do %>
+	<ul>
+	<% @transactions.each do |transaction| %>
+		<li>
+		<%= hidden_field_tag "transaction_ids[]", transaction.id %>
+		<%= transaction.account.owner %>
+		</li>
+	<% end %>
+	</ul>
+	<%= fields_for :transaction do |f| %>
+		<div class="fields">
+			<%= f.label :amount %><br />
+			<%= f.number_field :amount, :required => "" %>
+			<%= f.label :description  %><br />
+			<%= f.text_field :name, :required => "" %><br/>
+		</div>
+		<% end %>
+
+	<%= submit_tag "Save", :class => "button success small" %>
+<% end %>
