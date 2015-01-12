@@ -5,7 +5,7 @@
   <thead>
     <tr>
       <th><input type="checkbox" name="selectAll" id="selectAll" /></th>
-      <th>Account #</th>
+     
       <th>Owner</th>
       <th>Balance</th>
    
@@ -15,7 +15,7 @@
   </thead>
   <tfoot>
      <th><input type="checkbox" name="selectAll" id="selectAllFooter" /></th>
-      <th>Account #</th>
+      
       <th>Owner</th>
       <th>Balance</th>
    
@@ -26,7 +26,7 @@
     <% @accounts.each do |account| %>
       <tr>
         <td><%= check_box_tag "account_ids[]", account.id %></td>
-        <td><%= account.id %></td>
+        
         <td><%= link_to account.owner, account %></td>
         <td>$<%= account.balance %></td>
         
