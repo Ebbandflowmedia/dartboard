@@ -17,7 +17,37 @@ class TransactionsController < ApplicationController
     @transaction = Transaction.new
   end
 
- 
+ def add_multiple
+    unless params[:account_ids].present?
+      respond_to do |format|
+        format.html { redirect_to accounts_path, notice: 'Please choose an account to add the transaction to'}
+        format.json { render json: @transaction.errors, status: :unprocessable_entity }
+      end
+     else
+    @accounts = Account.find(params[:account_ids])
+    @transactions = []
+   @accounts.each do |account|
+      @transaction = Transaction.new()
+      account.transactions << @transaction
+      @transactions.push(@transaction)
+    end
+  end
+  end
+
+  def update_multiple
+    
+
+    @transactions = Transaction.find(params[:transaction_ids])
+    @transactions.reject! do |transaction|
+      transaction.update_attributes(params[:transaction].reject { |k,v| v.blank? })
+    end
+    if @transactions.empty?
+      redirect_to accounts_url
+    else
+      @transaction = Transaction.new(params[:transaction])
+      render "add_multiple"
+    end
+  end
 
   def add
     @transaction = Transaction.new(amount: params[:amount_num])
@@ -79,6 +109,8 @@ class TransactionsController < ApplicationController
     end
   end
 
+  
+
   # DELETE /transactions/1
   # DELETE /transactions/1.json
   def destroy
@@ -92,11 +124,15 @@ class TransactionsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_transaction
-      @transaction = Transaction.find(params[:id])
+      if params[:id] == 'add_multiple'
+
+      else
+        @transaction = Transaction.find(params[:id])
+      end
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def transaction_params
-      params[:transaction].permit(:name, :amount, :account_id)
+      params[:transaction].permit(:name, :amount, :account_id, :account_ids)
     end
 end

@@ -1,12 +1,12 @@
-<%= simple_form_for(@transaction) do |f| %>
+<%= simple_form_for @transaction, :html => {:"data-abide" => ''} do |f| %>
   <%= f.error_notification %>
 
   <div class="form-inputs">
 
   	<h1><%= @transaction.account.owner %></h1>
  	
-  	<%= f.input :amount %>
-  	<%= f.input :name, label: "Description" %>
+  	<%= f.input :amount, :input_html => {:required => ""} %>
+  	<%= f.input :name, label: "Description", :input_html => {:required => ""} %>
   	
   </div>
 

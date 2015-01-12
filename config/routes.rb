@@ -2,7 +2,12 @@ FahrAway::Application.routes.draw do
 
 
 
-  resources :transactions
+  resources :transactions do
+    collection do
+      get :add_multiple
+      put :update_multiple
+     end
+  end
 
        scope :transactions do
         get 'add/:account_num/amount/:amount_num', to: 'transactions#add', as: :add_transaction

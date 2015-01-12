@@ -1,8 +1,10 @@
 <h1>Listing accounts</h1>
 
-<table>
+<%= form_tag add_multiple_transactions_path, method: :get do %>
+<table id="accounts">
   <thead>
     <tr>
+      <th><input type="checkbox" name="selectAll" id="selectAll" /></th>
       <th>Account #</th>
       <th>Owner</th>
       <th>Balance</th>
@@ -11,10 +13,19 @@
       <th></th>
     </tr>
   </thead>
-
+  <tfoot>
+     <th><input type="checkbox" name="selectAll" id="selectAllFooter" /></th>
+      <th>Account #</th>
+      <th>Owner</th>
+      <th>Balance</th>
+   
+      <th></th>
+      <th></th>
+  </tfoot>
   <tbody>
     <% @accounts.each do |account| %>
       <tr>
+        <td><%= check_box_tag "account_ids[]", account.id %></td>
         <td><%= account.id %></td>
         <td><%= link_to account.owner, account %></td>
         <td>$<%= account.balance %></td>
@@ -37,7 +48,8 @@
     <% end %>
   </tbody>
 </table>
-<a href="#" class="button warning small">Classwide</a>
+<%= submit_tag "Add Transaction for Selected", :class => "button small" %>
+<% end %>
 <div id="myModal-5" class="reveal-modal" data-reveal>
             <h2>Awesome. I have it.</h2>
             <p class="lead">Your couch.  It is mine.</p>

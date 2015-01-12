@@ -17,3 +17,14 @@
 //= require_tree .
 
 $(function(){ $(document).foundation(); });
+
+$('#selectAll, #selectAllFooter').click(function() {
+      var checkedStatus = this.checked;
+
+     $('#accounts tbody tr').find('td:first :checkbox').each(function() {
+     $(this).prop('checked', checkedStatus);
+  });
+     $('#selectAll, #selectAllFooter').prop('checked', checkedStatus);
+
+
+});

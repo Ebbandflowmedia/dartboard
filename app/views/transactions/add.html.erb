@@ -1,4 +1,4 @@
-<%= simple_form_for(@transaction) do |f| %>
+<%= simple_form_for @transaction, :html => {:"data-abide" => ''} do |f| %>
   <%= f.error_notification %>
 
   <div class="form-inputs">
@@ -6,7 +6,7 @@
   	<h1><%= @transaction.account.owner %></h1>
  	<span><%= number_to_currency(@transaction.amount, :unit => "$", :precision => 2) %></span>
 
-  	<%= f.input :name, label: 'Description' %>
+  	<%= f.input :name, label: 'Description', :input_html => {:required => ""} %>
   	
   </div>
 
