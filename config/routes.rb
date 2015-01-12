@@ -4,6 +4,13 @@ FahrAway::Application.routes.draw do
 
   resources :transactions
 
+       scope :transactions do
+        get 'add/:account_num/amount/:amount_num', to: 'transactions#add', as: :add_transaction
+        get 'add/:account_num/amount/:amount_num/description/:description', to: 'transactions#add_with_description', as: :add_transaction_with_description
+        get 'add/:account_num', to: 'transactions#add_other', as: :add_other_transaction
+       end
+
+
   resources :accounts
 
   resources :roles

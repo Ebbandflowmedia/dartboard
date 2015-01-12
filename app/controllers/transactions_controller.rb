@@ -17,6 +17,33 @@ class TransactionsController < ApplicationController
     @transaction = Transaction.new
   end
 
+ 
+
+  def add
+    @transaction = Transaction.new(amount: params[:amount_num])
+    Account.find(params[:account_num]).transactions << @transaction
+  end
+
+  def add_with_description
+    @transaction = Transaction.new(amount: params[:amount_num], name: params[:description])
+    Account.find(params[:account_num]).transactions << @transaction
+
+    respond_to do |format|
+      if @transaction.save
+        format.html { redirect_to accounts_path, notice: 'Speeding ticket successfully created.' }
+        format.json { render action: 'show', status: :created, location: @transaction }
+      else
+        format.html { render action: 'new' }
+        format.json { render json: @transaction.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
+   def add_other
+    @transaction = Transaction.new()
+    Account.find(params[:account_num]).transactions << @transaction
+   end
+
   # GET /transactions/1/edit
   def edit
   end
@@ -42,7 +69,8 @@ class TransactionsController < ApplicationController
   def update
     respond_to do |format|
       if @transaction.update(transaction_params)
-        format.html { redirect_to @transaction, notice: 'Transaction was successfully updated.' }
+        @message = @transaction.account.owner + "'s account has been updated"
+        format.html { redirect_to accounts_path, notice: @message }
         format.json { head :no_content }
       else
         format.html { render action: 'edit' }

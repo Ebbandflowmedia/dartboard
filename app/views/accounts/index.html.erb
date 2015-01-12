@@ -6,7 +6,7 @@
       <th>Account #</th>
       <th>Owner</th>
       <th>Balance</th>
-      <th></th>
+   
       <th></th>
       <th></th>
     </tr>
@@ -16,15 +16,35 @@
     <% @accounts.each do |account| %>
       <tr>
         <td><%= account.id %></td>
-        <td><%= account.owner %></td>
+        <td><%= link_to account.owner, account %></td>
         <td>$<%= account.balance %></td>
-        <td><%= link_to 'Show', account %></td>
-        <td><%= link_to 'Edit', edit_account_path(account) %></td>
-        <td><%= link_to 'Destroy', account, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        
+        <td>
+          <%= link_to "$5", add_transaction_path(account.id, '5'), data: {:"reveal-id" => "myModal-5", :"reveal-ajax" => "true"}, :class => "button success small"%>
+         
+          <%= link_to "$10", add_transaction_path(account.id, '10'), data: {:"reveal-id" => "myModal-5", :"reveal-ajax" => "true"}, :class => "button success small"%>
+        
+          <%= link_to "$5", add_transaction_path(account.id, '-5'), data: {:"reveal-id" => "myModal-5", :"reveal-ajax" => "true"}, :class => "button alert small"%> 
+          <%= link_to "$10", add_transaction_path(account.id, '-10'), data: {:"reveal-id" => "myModal-5", :"reveal-ajax" => "true"}, :class => "button alert small"%> 
+          <%= link_to "Speeding Ticket", add_transaction_with_description_path(account.id, '-25', 'Speeding Ticket'), :class => "button warning small"%> 
+          <%= link_to "Other", add_other_transaction_path(account.id), data: {:"reveal-id" => "myModal-5", :"reveal-ajax" => "true"}, :class => "button small"%> 
+         
+         
+          
+        </td>
+      
       </tr>
     <% end %>
   </tbody>
 </table>
+<a href="#" class="button warning small">Classwide</a>
+<div id="myModal-5" class="reveal-modal" data-reveal>
+            <h2>Awesome. I have it.</h2>
+            <p class="lead">Your couch.  It is mine.</p>
+            <p>I'm a cool paragraph that lives inside of an even cooler modal. Wins!</p>
+            <a class="close-reveal-modal">&#215;</a>
+          </div>
+
 
 <br>
 

@@ -1,0 +1,17 @@
+<%= simple_form_for(@transaction) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-inputs">
+
+  	<h1><%= @transaction.account.owner %></h1>
+ 	<span><%= number_to_currency(@transaction.amount, :unit => "$", :precision => 2) %></span>
+
+  	<%= f.input :name, label: 'Description' %>
+  	
+  </div>
+
+  <div class="form-actions">
+     <%= f.button :submit, label: "Save Transaction", class: "success" %>
+    <%= link_to 'Cancel', @transaction, method: :delete, data: { confirm: 'Are you sure?' }, :class => "button warning small" %>
+  </div>
+<% end %>

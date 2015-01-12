@@ -3,7 +3,7 @@ class Account < ActiveRecord::Base
 	has_many :transactions
 
 	def owner
-		user.fname + ' ' + user.lname
+		user.fullName
 	end
 
 	def balance

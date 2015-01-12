@@ -1,5 +1,5 @@
 <h1><%= @transaction.name %></h1>
-<h1><%= number_to_currency(transaction.amount, :unit => "$", :precision => 2) %></h1>
+<h1><%= number_to_currency(@transaction.amount, :unit => "$", :precision => 2) %></h1>
 <h1><%= @transaction.account_id %></h1>
 
 <%= link_to 'Edit', edit_transaction_path(@transaction) %> |
