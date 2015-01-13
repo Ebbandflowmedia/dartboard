@@ -3,12 +3,10 @@
 <table>
   <thead>
     <tr>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
+      <th>Description</th>
+      <th>Amount</th>
+      <th>Account</th>
+      
      
     </tr>
   </thead>
@@ -16,12 +14,9 @@
   <tbody>
     <% @transactions.each do |transaction| %>
       <tr>
-        <td><%= transaction.name %></td>
+        <td><%= link_to transaction.name, transaction %></td>
         <td><%= number_to_currency(transaction.amount, :unit => "$", :precision => 2) %></td>
-        <td><%= transaction.account.owner %> (#<%= transaction.account.id %>)</td>
-        <td><%= link_to 'Show', transaction %></td>
-        <td><%= link_to 'Edit', edit_transaction_path(transaction) %></td>
-        <td><%= link_to 'Destroy', transaction, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to transaction.account.owner, transaction_path(transaction.id) %></td>   
       </tr>
     <% end %>
   </tbody>
