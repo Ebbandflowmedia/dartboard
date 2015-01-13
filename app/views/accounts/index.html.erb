@@ -28,7 +28,7 @@
         <td><%= check_box_tag "account_ids[]", account.id %></td>
         
         <td><%= link_to account.owner, account %></td>
-        <td>$<%= account.balance %></td>
+        <td><%= number_to_currency(account.balance, :unit => "$", :precision => 2) %></td>
         
         <td>
           <%= link_to "$5", add_transaction_path(account.id, '5'), data: {:"reveal-id" => "myModal-5", :"reveal-ajax" => "true"}, :class => "button success small"%>
