@@ -12,7 +12,7 @@
       <th>Date</th>
       <th>Amount</th>
       <th>Description</th>
-   
+      <th></th>
      
     </tr>
   </thead>
@@ -23,7 +23,8 @@
       	<td><%= transaction.created_at %></td>
       	 <td><%= number_to_currency(transaction.amount, :unit => "$", :precision => 2) %></td>
         <td><%= transaction.name %></td>
-       
+       <td><%= link_to 'Edit', edit_transaction_path(transaction), :class => "button small" %>
+</td>
         
         
       </tr>
