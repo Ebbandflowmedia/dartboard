@@ -11,14 +11,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141101174940) do
+ActiveRecord::Schema.define(version: 20150709203142) do
 
-  create_table "events", force: true do |t|
-    t.string   "name"
-    t.date     "start_date"
-    t.date     "end_date"
+  create_table "matches", force: true do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "status"
+    t.string   "shooter_id"
+  end
+
+  create_table "matches_users", id: false, force: true do |t|
+    t.integer "match_id"
+    t.integer "user_id"
   end
 
   create_table "roles", force: true do |t|
@@ -31,6 +35,34 @@ ActiveRecord::Schema.define(version: 20141101174940) do
     t.integer "role_id"
     t.integer "user_id"
   end
+
+  create_table "scores", force: true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "match_id"
+    t.integer  "user_id"
+    t.integer  "hits",       default: 0
+    t.integer  "shots",      default: 0
+    t.integer  "score",      default: 0
+    t.integer  "num_20",     default: 0
+    t.integer  "num_19",     default: 0
+    t.integer  "num_18",     default: 0
+    t.integer  "num_17",     default: 0
+    t.integer  "num_16",     default: 0
+    t.integer  "num_15",     default: 0
+    t.boolean  "status",     default: false
+    t.boolean  "status_20",  default: false
+    t.boolean  "status_19",  default: false
+    t.boolean  "status_18",  default: false
+    t.boolean  "status_17",  default: false
+    t.boolean  "status_16",  default: false
+    t.boolean  "status_15",  default: false
+    t.boolean  "status_25",  default: false
+    t.integer  "num_25",     default: 0
+  end
+
+  add_index "scores", ["match_id"], name: "index_scores_on_match_id"
+  add_index "scores", ["user_id"], name: "index_scores_on_user_id"
 
   create_table "users", force: true do |t|
     t.string   "email",                  default: "", null: false
@@ -50,8 +82,7 @@ ActiveRecord::Schema.define(version: 20141101174940) do
     t.string   "avatar_content_type"
     t.integer  "avatar_file_size"
     t.datetime "avatar_updated_at"
-    t.string   "primary_position"
-    t.string   "secondary_position"
+    t.integer  "handicap"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

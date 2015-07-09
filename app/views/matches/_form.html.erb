@@ -1,0 +1,14 @@
+<%= simple_form_for(@match) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-inputs">
+  </div>
+
+  <div class="form-actions">
+
+    <%= f.association :users, label_method: :fname, label: 'Player One', as: :check_boxes %>
+     <%= f.association :users, label_method: :fname, label: 'Player Two', as: :check_boxes, multiple: :false %>
+
+    <%= f.button :submit %>
+  </div>
+<% end %>

@@ -26,8 +26,7 @@ class DeviseCreateUsers < ActiveRecord::Migration
       t.attachment :avatar
 
       ##Player Info
-      t.string :primary_position
-      t.string :secondary_position
+      t.integer :handicap
       
 
 

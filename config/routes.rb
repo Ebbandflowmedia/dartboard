@@ -2,6 +2,18 @@ FahrAway::Application.routes.draw do
 
 
 
+  resources :scores
+
+  scope :scores do
+   get ':id/num/:num/factor/:factor', to: 'scores#hit', as: :record_hit
+  end
+
+  resources :matches
+
+  scope :matches do
+   get ':id/shooter/:shooter_id', to: 'matches#switch_shooter', as: :switch_shooter
+  end
+
   resources :roles
 
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
@@ -9,8 +21,8 @@ FahrAway::Application.routes.draw do
 
   resources :events
 
-  root :to => 'events#index'
-  get "events/index"
+  root :to => 'matches#index'
+  get "matches/index"
 
 
 devise_scope :user do
